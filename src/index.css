@@ -1,0 +1,4 @@
+/* Import design system, layout, and component styles */
+@import "./styles/theme.css";
+@import "./styles/App.css";
+@import "./styles/components.css";

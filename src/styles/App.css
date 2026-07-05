@@ -1,0 +1,133 @@
+.app-container {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1rem;
+  transition: background 0.8s ease;
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+/* Background Weather Overlay (for subtle dynamic weather gradients) */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.15;
+  z-index: 0;
+  transition: background 1s ease;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .app-container::before {
+  opacity: 0.08;
+}
+
+/* Weather-specific background gradients on the container */
+.weather-clear::before { background: var(--weather-clear); }
+.weather-clouds::before { background: var(--weather-clouds); }
+.weather-rain::before { background: var(--weather-rain); }
+.weather-snow::before { background: var(--weather-snow); }
+.weather-thunderstorm::before { background: var(--weather-thunderstorm); }
+.weather-drizzle::before { background: var(--weather-rain); }
+.weather-mist::before { background: var(--weather-mist); }
+.weather-default::before { background: var(--weather-default); }
+
+/* Main Content Area */
+.app-content {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 10;
+  position: relative;
+  margin-top: 1rem;
+}
+
+/* Header Section */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.brand-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-icon {
+  color: var(--accent-color);
+  animation: pulse-soft 3s infinite ease-in-out;
+}
+
+/* Glassmorphism Panel Base */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.07);
+}
+
+[data-theme="dark"] .glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Footer info */
+.app-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  z-index: 10;
+}
+
+.app-footer a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .app-container {
+    padding: 1rem 0.75rem;
+  }
+  .app-content {
+    gap: 1rem;
+  }
+  .brand-title {
+    font-size: 1.5rem;
+  }
+  .glass-panel {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+}
